@@ -30,6 +30,9 @@ class ViewController: UIViewController {
     var maximoValorY:Double = 0
     var maximoValorZ:Double = 0
 
+    var sumaDeMagnitudes:Double = 0
+    var maximoValorMagnitud:Double = 0
+    
     
     var motionManager = CMMotionManager()
     
@@ -64,13 +67,13 @@ class ViewController: UIViewController {
                     self.maximoValorZ = myData.acceleration.z
                     self.maximoValorZLabel.text = String(self.maximoValorZ)
                 }
-                /*
+                
                 self.sumaDeMagnitudes = abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)
-                self.maginitud.text = String(self.sumaDeMagnitudes)
+                self.magnitudLabel.text = String(self.sumaDeMagnitudes)
                 if (self.sumaDeMagnitudes > self.maximoValorMagnitud) {
                     self.maximoValorMagnitud = self.sumaDeMagnitudes
                     self.maximoValorMagnitudLabel.text = String(self.maximoValorMagnitud)
-                }*/
+                }
             }
         }
     }
@@ -84,7 +87,7 @@ class ViewController: UIViewController {
         self.maximoValorX = 0
         self.maximoValorY = 0
         self.maximoValorZ = 0
-        
+        self.maximoValorMagnitud = 0
     }
     
 
