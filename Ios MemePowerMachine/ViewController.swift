@@ -26,12 +26,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var maximoValorMagnitudLabel: UILabel!
     @IBOutlet weak var magnitudLabel: UILabel!
 
+    @IBOutlet weak var textoDeMuestras: UITextView!
+    
     var maximoValorX:Double = 0
     var maximoValorY:Double = 0
     var maximoValorZ:Double = 0
-
+    
     var sumaDeMagnitudes:Double = 0
     var maximoValorMagnitud:Double = 0
+    var stringTextoDeMuestas:String = ""
+    var contadorDeMuestras:Int = 0
     
     
     var motionManager = CMMotionManager()
@@ -42,7 +46,7 @@ class ViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        motionManager.accelerometerUpdateInterval = 0.001;
+        motionManager.accelerometerUpdateInterval = 0.01;
         
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             if let myData = data {
@@ -87,7 +91,11 @@ class ViewController: UIViewController {
         self.maximoValorX = 0
         self.maximoValorY = 0
         self.maximoValorZ = 0
+        self.contadorDeMuestras = self.contadorDeMuestras + 1;
+        self.stringTextoDeMuestas = self.stringTextoDeMuestas + "\n" + String(self.contadorDeMuestras) + ".- " + String(self.maximoValorMagnitud)
+        self.textoDeMuestras.text = self.stringTextoDeMuestas;
         self.maximoValorMagnitud = 0
+    
     }
     
 
