@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var magnitudLabel: UILabel!
 
     @IBOutlet weak var textoDeMuestras: UITextView!
+    @IBOutlet weak var contadorDeRepeticionesLabel: UILabel!
     
     var maximoValorX:Double = 0
     var maximoValorY:Double = 0
@@ -37,8 +38,14 @@ class ViewController: UIViewController {
     var stringTextoDeMuestas:String = ""
     var contadorDeMuestras:Int = 0
     
+    var magnitudAnterior:Double = 0;
+    var diferenciaDeMagnitudes:Double = 0
+    
+    var contadorDeRepeticionesEntero:Int = 0
     
     var motionManager = CMMotionManager()
+    
+    var ciclo:Bool = true;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +53,27 @@ class ViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        motionManager.accelerometerUpdateInterval = 0.01;
+        hola();
+    }
+    
+    public func hola(){
+        motionManager.accelerometerUpdateInterval = 0.1;
         
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             if let myData = data {
                 // print(myData)
+                
+                //cambio de color de fondo
+                /*
+                 if (self.ciclo == true) {
+                 self.view.backgroundColor = UIColor.green
+                 self.ciclo = false;
+                 } else {
+                 self.view.backgroundColor = UIColor.brown
+                 self.ciclo = true;
+                 }*/
+                
+                
                 self.xlabel.text = String(myData.acceleration.x)
                 if (abs(myData.acceleration.x) > self.maximoValorX)
                 {
@@ -72,11 +95,29 @@ class ViewController: UIViewController {
                     self.maximoValorZLabel.text = String(self.maximoValorZ)
                 }
                 
+                self.magnitudAnterior = self.sumaDeMagnitudes;
                 self.sumaDeMagnitudes = abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)
+                
                 self.magnitudLabel.text = String(self.sumaDeMagnitudes)
-                if (self.sumaDeMagnitudes > self.maximoValorMagnitud) {
+                if (self.sumaDeMagnitudes > self.maximoValorMagnitud)
+                {
                     self.maximoValorMagnitud = self.sumaDeMagnitudes
                     self.maximoValorMagnitudLabel.text = String(self.maximoValorMagnitud)
+                }
+                
+                if (self.sumaDeMagnitudes > 2)
+                    //if (abs(self.sumaDeMagnitudes - self.magnitudAnterior) > 0.4)
+                {
+                    self.contadorDeRepeticionesEntero = self.contadorDeRepeticionesEntero + 1;
+                    self.contadorDeRepeticionesLabel.text = String(self.contadorDeRepeticionesEntero);
+                    // dormir el acelerometro por un segundo, y despartarlo despues de un segundo
+                    self.motionManager.stopAccelerometerUpdates()
+                    self.view.backgroundColor = UIColor.brown
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                        // Put your code which should be executed with a delay here
+                        self.view.backgroundColor = UIColor.green
+                        self.hola();
+                    })
                 }
             }
         }

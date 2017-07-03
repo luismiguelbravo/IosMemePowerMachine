@@ -114,10 +114,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="t5k-BE-cE7">
-                                <rect key="frame" x="16" y="159" width="288" height="341"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="t5k-BE-cE7">
+                                <rect key="frame" x="16" y="159" width="288" height="211"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -129,10 +129,18 @@
                                     <action selector="ReiniciarContadores:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AiH-Ra-1RD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc3-eP-aME">
+                                <rect key="frame" x="16" y="386" width="288" height="107"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="83"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="contadorDeRepeticionesLabel" destination="jc3-eP-aME" id="2AW-8M-Ply"/>
                         <outlet property="magnitudLabel" destination="k6Z-qq-Fzc" id="iOo-GA-DFe"/>
                         <outlet property="maximoValorMagnitudLabel" destination="Bwd-xl-7N5" id="gW5-LC-agS"/>
                         <outlet property="maximoValorXLabel" destination="gYA-8Y-TpQ" id="yY7-s6-lo5"/>
