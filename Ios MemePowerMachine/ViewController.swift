@@ -136,7 +136,6 @@ class ViewController: UIViewController {
         self.stringTextoDeMuestas = self.stringTextoDeMuestas + "\n" + String(self.contadorDeMuestras) + ".- " + String(self.maximoValorMagnitud)
         self.textoDeMuestras.text = self.stringTextoDeMuestas;
         self.maximoValorMagnitud = 0
-    
     }
     
 
